@@ -18,4 +18,5 @@ COPY --from=builder /app/main .
 COPY --from=builder /app/docs ./docs
 
 
-ENTRYPOINT ["./main"]
+
+entrypoint ["./main"]

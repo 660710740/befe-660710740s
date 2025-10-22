@@ -1,7 +1,7 @@
 package main
 
 import (
-  
+    _ "week13-lab6/docs"
 	"fmt"
 	"os"
 	"database/sql"

@@ -17,14 +17,14 @@ const docTemplate = `{
     "paths": {
         "/books": {
             "get": {
-                "description": "Get details of books",
+                "description": "Get details of a books",
                 "produces": [
                     "application/json"
                 ],
                 "tags": [
                     "Books"
                 ],
-                "summary": "Get all books",
+                "summary": "Get all book",
                 "responses": {
                     "200": {
                         "description": "OK",
@@ -44,24 +44,17 @@ const docTemplate = `{
                 }
             },
             "post": {
-                "description": "Create details of a book",
+                "description": "create details of a book",
                 "produces": [
                     "application/json"
                 ],
                 "tags": [
                     "Books"
                 ],
-                "summary": "Create book",
+                "summary": "create book",
                 "parameters": [
                     {
-                        "type": "integer",
-                        "description": "Book ID",
-                        "name": "id",
-                        "in": "path",
-                        "required": true
-                    },
-                    {
-                        "description": "Book data",
+                        "description": "book data",
                         "name": "book",
                         "in": "body",
                         "required": true,
@@ -77,8 +70,8 @@ const docTemplate = `{
                             "$ref": "#/definitions/main.Book"
                         }
                     },
-                    "404": {
-                        "description": "Not Found",
+                    "500": {
+                        "description": "Internal Server Error",
                         "schema": {
                             "$ref": "#/definitions/main.ErrorResponse"
                         }
@@ -99,7 +92,7 @@ const docTemplate = `{
                 "parameters": [
                     {
                         "type": "integer",
-                        "description": "Book ID",
+                        "description": "book ID",
                         "name": "id",
                         "in": "path",
                         "required": true
@@ -112,8 +105,8 @@ const docTemplate = `{
                             "$ref": "#/definitions/main.Book"
                         }
                     },
-                    "404": {
-                        "description": "Not Found",
+                    "500": {
+                        "description": "Internal Server Error",
                         "schema": {
                             "$ref": "#/definitions/main.ErrorResponse"
                         }
@@ -121,24 +114,24 @@ const docTemplate = `{
                 }
             },
             "put": {
-                "description": "Update a book by ID",
+                "description": "update details of a book by ID",
                 "produces": [
                     "application/json"
                 ],
                 "tags": [
                     "Books"
                 ],
-                "summary": "Update book by ID",
+                "summary": "update book by ID",
                 "parameters": [
                     {
                         "type": "integer",
-                        "description": "Book ID",
+                        "description": "book ID",
                         "name": "id",
                         "in": "path",
                         "required": true
                     },
                     {
-                        "description": "Updated book data",
+                        "description": "update book data",
                         "name": "book",
                         "in": "body",
                         "required": true,
@@ -154,8 +147,8 @@ const docTemplate = `{
                             "$ref": "#/definitions/main.Book"
                         }
                     },
-                    "404": {
-                        "description": "Not Found",
+                    "500": {
+                        "description": "Internal Server Error",
                         "schema": {
                             "$ref": "#/definitions/main.ErrorResponse"
                         }
@@ -163,18 +156,18 @@ const docTemplate = `{
                 }
             },
             "delete": {
-                "description": "Delete a book by ID",
+                "description": "delete details of a book by ID",
                 "produces": [
                     "application/json"
                 ],
                 "tags": [
                     "Books"
                 ],
-                "summary": "Delete book by ID",
+                "summary": "delete book by ID",
                 "parameters": [
                     {
                         "type": "integer",
-                        "description": "Book ID",
+                        "description": "book ID",
                         "name": "id",
                         "in": "path",
                         "required": true
@@ -182,16 +175,13 @@ const docTemplate = `{
                 ],
                 "responses": {
                     "200": {
-                        "description": "message: book deleted successfully",
+                        "description": "OK",
                         "schema": {
-                            "type": "object",
-                            "additionalProperties": {
-                                "type": "string"
-                            }
+                            "$ref": "#/definitions/main.Book"
                         }
                     },
-                    "404": {
-                        "description": "Not Found",
+                    "500": {
+                        "description": "Internal Server Error",
                         "schema": {
                             "$ref": "#/definitions/main.ErrorResponse"
                         }
@@ -251,10 +241,10 @@ var SwaggerInfo = &swag.Spec{
 	Description:      "This is a simple example of using Gin with Swagger.",
 	InfoInstanceName: "swagger",
 	SwaggerTemplate:  docTemplate,
-	// LeftDelim:        "{{",
-	// RightDelim:       "}}",
+	LeftDelim:        "{{",
+	RightDelim:       "}}",
 }
 
-func init() { 
+func init() {
 	swag.Register(SwaggerInfo.InstanceName(), SwaggerInfo)
 }

@@ -33,7 +33,7 @@ info:
 paths:
   /books:
     get:
-      description: Get details of books
+      description: Get details of a books
       produces:
       - application/json
       responses:
@@ -47,18 +47,13 @@ paths:
           description: Internal Server Error
           schema:
             $ref: '#/definitions/main.ErrorResponse'
-      summary: Get all books
+      summary: Get all book
       tags:
       - Books
     post:
-      description: Create details of a book
+      description: create details of a book
       parameters:
-      - description: Book ID
-        in: path
-        name: id
-        required: true
-        type: integer
-      - description: Book data
+      - description: book data
         in: body
         name: book
         required: true
@@ -71,42 +66,18 @@ paths:
           description: OK
           schema:
             $ref: '#/definitions/main.Book'
-        "404":
-          description: Not Found
+        "500":
+          description: Internal Server Error
           schema:
             $ref: '#/definitions/main.ErrorResponse'
-      summary: Create book
+      summary: create book
       tags:
       - Books
   /books/{id}:
     delete:
-      description: Delete a book by ID
+      description: delete details of a book by ID
       parameters:
-      - description: Book ID
-        in: path
-        name: id
-        required: true
-        type: integer
-      produces:
-      - application/json
-      responses:
-        "200":
-          description: 'message: book deleted successfully'
-          schema:
-            additionalProperties:
-              type: string
-            type: object
-        "404":
-          description: Not Found
-          schema:
-            $ref: '#/definitions/main.ErrorResponse'
-      summary: Delete book by ID
-      tags:
-      - Books
-    get:
-      description: Get details of a book by ID
-      parameters:
-      - description: Book ID
+      - description: book ID
         in: path
         name: id
         required: true
@@ -118,22 +89,44 @@ paths:
           description: OK
           schema:
             $ref: '#/definitions/main.Book'
-        "404":
-          description: Not Found
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/main.ErrorResponse'
+      summary: delete book by ID
+      tags:
+      - Books
+    get:
+      description: Get details of a book by ID
+      parameters:
+      - description: book ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/main.Book'
+        "500":
+          description: Internal Server Error
           schema:
             $ref: '#/definitions/main.ErrorResponse'
       summary: Get book by ID
       tags:
       - Books
     put:
-      description: Update a book by ID
+      description: update details of a book by ID
       parameters:
-      - description: Book ID
+      - description: book ID
         in: path
         name: id
         required: true
         type: integer
-      - description: Updated book data
+      - description: update book data
         in: body
         name: book
         required: true
@@ -146,11 +139,11 @@ paths:
           description: OK
           schema:
             $ref: '#/definitions/main.Book'
-        "404":
-          description: Not Found
+        "500":
+          description: Internal Server Error
           schema:
             $ref: '#/definitions/main.ErrorResponse'
-      summary: Update book by ID
+      summary: update book by ID
       tags:
       - Books
 swagger: "2.0"
